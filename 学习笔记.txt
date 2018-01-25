@@ -1,0 +1,36 @@
+初始化
+npm init
+
+
+安装框架和依赖包
+npm install --save express
+npm install --save body-parser
+npm install --save cookies
+npm install --save markdown
+npm install --save mongoose
+npm install --save swig
+
+
+目录结构
+db       数据库
+models   数据库模型 操作数据库的
+public   公共文件目录
+routers  路由文件
+schemas  数据库结构文件
+views    模板视图
+app.js   应用入口（启动）
+
+
+
+路由绑定
+app.get("/",function(req,res,next){})
+	req:request 对象
+	res:response 对象
+	next: 方法，用于执行下一个和路径匹配的函数
+
+
+// 加载express模块
+var express= require('express');
+
+设置静态文件托管目录
+app.use('/public',express.static(__dirname + '/public'));
