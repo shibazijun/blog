@@ -1,51 +1,88 @@
-// Ó¦ÓÃ³ÌĞòµÄÈë¿Ú
+ï»¿// åº”ç”¨ç¨‹åºçš„å…¥å£
 
 
-var express= require('express');// ¼ÓÔØexpressÄ£¿é
-var swig= require('swig');      //¼ÓÔØÄ£°å
-var app=express();              // ´´½¨appÓ¦ÓÃ=> Nodejs HeateServer()
+var express= require('express');// åŠ è½½expressæ¨¡å—
+var swig= require('swig');      //åŠ è½½æ¨¡æ¿
+var  mongoose = require('mongoose'); //åŠ è½½æ•°æ®åº“æ¨¡å—
+var  bodyParser = require('body-parser'); //ç”¨äºå¤„ç†POSTæäº¤è¿‡æ¥çš„æ•°æ®
+var  cookies = require('cookies'); //å­˜å‚¨ç”¨æˆ·ç™»å½•ä¿¡æ¯
 
-//¾²Ì¬ÎÄ¼ş´¦Àí£¬ ÉèÖÃ¾²Ì¬ÎÄ¼şÍĞ¹ÜÄ¿Â¼
-//µ±ÓÃ»§·ÃÎÊµÄURLÒÔpublic¿ªÊ¼µÄ£¬Ôò·µ»Ø¶ÔÓ¦µÄ__dirname + public ÏÂµÄÎÄ¼ş
+var app=express();              // åˆ›å»ºappåº”ç”¨=> Nodejs HeateServer()
+
+//é™æ€æ–‡ä»¶å¤„ç†ï¼Œ è®¾ç½®é™æ€æ–‡ä»¶æ‰˜ç®¡ç›®å½•
+//å½“ç”¨æˆ·è®¿é—®çš„URLä»¥publicå¼€å§‹çš„ï¼Œåˆ™è¿”å›å¯¹åº”çš„__dirname + public ä¸‹çš„æ–‡ä»¶
 app.use('/public',express.static(__dirname + '/public'));
 
-// ÅäÖÃÓ¦ÓÃÄ£°å
-//¶¨Òåµ±Ç°Ó¦ÓÃËùÊ¹ÓÃµÄÄ£°åÒıÇæ
+// é…ç½®åº”ç”¨æ¨¡æ¿
+//å®šä¹‰å½“å‰åº”ç”¨æ‰€ä½¿ç”¨çš„æ¨¡æ¿å¼•æ“
 app.engine('html',swig.renderFile);
-// µÚÒ»¸ö²ÎÊı£ºÄ£°åÒıÇæµÄÃû³Æ£¬Í¬Ê±Ò²ÊÇÄ£°åÎÄ¼şµÄºó×º
-// µÚ¶ş¸ö²ÎÊı£º±íÊ¾ÓÃÓÚ½âÎö´¦ÀíÄ£°åÄÚÈİµÄ·½·¨
+// ç¬¬ä¸€ä¸ªå‚æ•°ï¼šæ¨¡æ¿å¼•æ“çš„åç§°ï¼ŒåŒæ—¶ä¹Ÿæ˜¯æ¨¡æ¿æ–‡ä»¶çš„åç¼€
+// ç¬¬äºŒä¸ªå‚æ•°ï¼šè¡¨ç¤ºç”¨äºè§£æå¤„ç†æ¨¡æ¿å†…å®¹çš„æ–¹æ³•
 
 
-app.set('views','./views'); //ÉèÖÃÄ£°å´æ·ÅµÄÄ¿Â¼£¬µÚÒ»¸ö²ÎÊı±ØĞëÊÇviews£¬µÚ¶ş¸ö²ÎÊıÊÇÄ¿Â¼
-app.set('view engine','html'); //×¢²áÄ£°åÒıÇæ£¬µÚÒ»¸ö²ÎÊı±ØĞëÊÇview engine£¬µÚ¶ş¸ö²ÎÊıºÍapp.engineÕâ¸ö·½·¨ÖĞµÄµÚ¸ö²ÎÊı±ØĞëÊÇÒ»ÖÂµÄ
+app.set('views','./views'); //è®¾ç½®æ¨¡æ¿å­˜æ”¾çš„ç›®å½•ï¼Œç¬¬ä¸€ä¸ªå‚æ•°å¿…é¡»æ˜¯viewsï¼Œç¬¬äºŒä¸ªå‚æ•°æ˜¯ç›®å½•
+app.set('view engine','html'); //æ³¨å†Œæ¨¡æ¿å¼•æ“ï¼Œç¬¬ä¸€ä¸ªå‚æ•°å¿…é¡»æ˜¯view engineï¼Œç¬¬äºŒä¸ªå‚æ•°å’Œapp.engineè¿™ä¸ªæ–¹æ³•ä¸­çš„ç¬¬ä¸ªå‚æ•°å¿…é¡»æ˜¯ä¸€è‡´çš„
 
-swig.setDefaults({cache:false});   //¿ª·¢¹ı³ÌÖĞ¹Ø±Õ»º´æ
+swig.setDefaults({cache:false});   //å¼€å‘è¿‡ç¨‹ä¸­å…³é—­ç¼“å­˜
 
-// ¶¯Ì¬ÎÄ¼ş´¦Àí£¬ÇëÇóÊ×Ò³
-// req request¶ÔÏó
-// res response ¶ÔÏó
-// next º¯Êı
-app.get("/",function(req,res,next){
-    // res.send('<h1>hello word</h1>')
-    // ¶ÁÈ¡viewsÄ¿Â¼ÏÂÖ¸¶¨µÄÎÄ¼ş£¬½â½âÎö²¢·µ»Ø¸ø¿Í»§¶Ë
-    // µÚÒ»¸ö²ÎÊı£º±íÊ¾Ä£°åµÄÎÄ¼ş£¬Ïà¶ÔÓÚviewsÄ¿Â¼
-    // µÚ¶ş¸ö²ÎÊı£º´«µİ¸øÄ£°åÊ¹ÓÃµÄÊı¾İ
-    res.render('index')
+// è®¾ç½®bodyparse
+app.use(bodyParser.urlencoded({extended:true}))
+
+//è®¾ç½®cookies
+app.use(function (req,res,next) {
+    req.cookies = new cookies(req,res);
+    req.userInfo={}  //è§£æç™»å½•ç”¨æˆ·çš„COOKieä¿¡æ¯
+    if(req.cookies.get("userInfo")){
+        try{
+            req.userInfo=JSON.parse(req.cookies.get("userInfo"))
+        }catch(e){}
+    }
+
+    //console.log(typeof req.cookies.get("userInfo"))
+    next()
 })
 
 
-//Â·ÓÉ
+/*// åŠ¨æ€æ–‡ä»¶å¤„ç†ï¼Œè¯·æ±‚é¦–é¡µ
+// req requestå¯¹è±¡
+// res response å¯¹è±¡
+// next å‡½æ•°
+app.get("/",function(req,res,next){
+    // res.send('<h1>hello word</h1>')
+    // è¯»å–viewsç›®å½•ä¸‹æŒ‡å®šçš„æ–‡ä»¶ï¼Œè§£è§£æå¹¶è¿”å›ç»™å®¢æˆ·ç«¯
+    // ç¬¬ä¸€ä¸ªå‚æ•°ï¼šè¡¨ç¤ºæ¨¡æ¿çš„æ–‡ä»¶ï¼Œç›¸å¯¹äºviewsç›®å½•
+    // ç¬¬äºŒä¸ªå‚æ•°ï¼šä¼ é€’ç»™æ¨¡æ¿ä½¿ç”¨çš„æ•°æ®
+    res.render('index')
+})*/
+
+
+// æ ¹æ®ä¸åŒåŠŸèƒ½ï¼Œä½¿ç”¨app.use() è¿›è¡Œæ¨¡å—åˆ’åˆ†
+app.use('/admin',require('./routers/admin'));
+app.use('/api',require('./routers/api'));
+app.use('/',require('./routers/main'));
+
+
+
+
+//è·¯ç”±
 /*app.get("/main.css",function(req,res,next){
    res.setHeader('content-type','text/css');
     res.send('body{background:red}');
 })*/
 
 
+mongoose.connect('mongodb://localhost:27018/blog',function(err){
+    if(err){
+        console.log('æ•°æ®åº“è¿æ¥å¤±è´¥')
+    }else{
+        console.log('success')
+        app.listen(8088); // ç›‘å¬httpè¯·æ±‚
+    }
+});
 
 
-// ¼àÌıhttpÇëÇó
-app.listen(8088);
 
-// ÓÃ»§·¢ËÍhttpÇëÇó-> URL->  ½âÎöÂ·ÓÉ->  ÕÒµ½Æ¥ÅäµÄ¹æÔò -> Ö´ĞĞÖ¸¶¨°ó¶¨µÄº¯Êı£¬·µ»Ø¶ÔÓ¦µÄÄÚÈİ¸ø¿Í»§¶Ë
-// public -> ¾²Ì¬ -> Ö±½Ó¶ÁÈ¡Ö¸¶¨Ä¿Â¼ÏÂµÄÎÄ¼ş -> ·µ»Ø¸ø¿Í»§¶Ë
-// ¶¯Ì¬ ->  ´¦ÀíÒµÎñÂß¼­£¬¼ÓÔØÄ£°å£¬½âÎöÄ£°å -> ·µ»ØÊı¾İ¸ø¿Í»§¶Ë
+
+// ç”¨æˆ·å‘é€httpè¯·æ±‚-> URL->  è§£æè·¯ç”±->  æ‰¾åˆ°åŒ¹é…çš„è§„åˆ™ -> æ‰§è¡ŒæŒ‡å®šç»‘å®šçš„å‡½æ•°ï¼Œè¿”å›å¯¹åº”çš„å†…å®¹ç»™å®¢æˆ·ç«¯
+// public -> é™æ€ -> ç›´æ¥è¯»å–æŒ‡å®šç›®å½•ä¸‹çš„æ–‡ä»¶ -> è¿”å›ç»™å®¢æˆ·ç«¯
+// åŠ¨æ€ ->  å¤„ç†ä¸šåŠ¡é€»è¾‘ï¼ŒåŠ è½½æ¨¡æ¿ï¼Œè§£ææ¨¡æ¿ -> è¿”å›æ•°æ®ç»™å®¢æˆ·ç«¯

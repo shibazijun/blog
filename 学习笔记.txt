@@ -1,3 +1,13 @@
+git init
+git add .
+git commit -m "first commit"
+git remote add origin https://github.com/shibazijun/blog.git
+git push -u origin master
+
+
+
+
+
 初始化
 npm init
 
@@ -34,3 +44,29 @@ var express= require('express');
 
 设置静态文件托管目录
 app.use('/public',express.static(__dirname + '/public'));
+
+
+根据功能模块划分
+前台模块
+后台模块
+API模块
+
+使用app.use() 进行模块划分
+app.use('/admin',require('./router/admin'))
+app.use('/api',require('./router/api'))
+app.use('/',require('./router/main'))
+
+
+
+
+
+前台模块
+/ 首页
+/view 内容页
+
+API模块
+/ 首页
+/register 用户注册
+/login  用户登录
+/comment 评论获取
+/comment/post 评论提交

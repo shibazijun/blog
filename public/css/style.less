@@ -1,0 +1,183 @@
+﻿body{
+  padding:0;
+  margin:0;
+  font:14px/2 "微软雅黑";
+  background-color: #efefef;
+}
+
+h1,h2,h3,h4,ul{
+  padding:0;
+  margin:0;
+  font:14px/2 "微软雅黑";
+}
+
+ul{list-style: none;}
+
+header{
+  .backimg{
+    height:200px;
+    position: relative;
+    img{
+      width:100%;
+      height:200px;
+    }
+  }
+  .log{
+    text-align: center;
+    height:45px;
+    display: block;
+    position: absolute;
+    top:60px;
+    width:100%;
+    text-align: center;
+    img{
+      width:220px;
+      height:45px;
+      margin:auto;
+    }
+  }
+}
+
+nav{
+  background-color: #fff;
+  border-bottom:solid 2px #ccc;
+  height:40px;
+  .menu{
+    width:1200px;
+    margin:auto;
+    text-align: center;
+    a{
+      padding:0px 20px;
+      margin:0px 10px;
+      line-height:40px;
+      display:inline-block;
+      text-decoration: none;
+      &.active{
+        border-bottom:solid 2px darkgoldenrod;
+      }
+    }
+  }
+}
+
+main{
+  width:1200px;
+  margin:auto;
+  padding:20px 0px;
+  .mainLeft{
+    width:880px;
+    float:left;
+
+    .listBox{
+      background: #fff;
+      margin-bottom:20px;
+      padding:20px;
+      line-height:2;
+      h1{
+        font-size:20px;
+        text-align:center;
+        font-weight:bold;
+      }
+      .colDefault{
+        text-align:center;
+        .colInfo{color:#9b8efd;}
+      }
+
+      dfn{
+        padding:10px 0px;
+        font-style: normal;
+        font-size:16px;
+      }
+
+      .function{
+        a{
+          padding:8px 20px;
+          background:#f39a10;
+          color:#fff;
+          text-decoration: none;
+          border-radius: 4px;
+          &:hover{
+            background:#F3642D;
+          }
+        }
+      }
+
+
+      .clear{
+       li{
+         display: inline-block;
+         width:33%;
+         text-align:center;
+         &.previous{text-align:left;}
+         &.next{text-align:right;}
+         a{
+           color:#9b8efd;
+         }
+       }
+      }
+    }
+  }
+
+  .mainRight{
+    width:300px;
+    float:right;
+    .rightBox{
+      padding:10px;
+      margin-bottom:20px;
+      background-color: #fff;
+      .title{
+        font-size:16px;
+        font-weight:bold;
+        border-bottom:solid 2px #efefef;
+        height:40px;
+        span{
+          line-height:40px;
+          height:40px;
+          display: inline-block;
+          border-bottom:solid 2px #960;
+        }
+      }
+
+      .colWarning{
+        text-align: center;
+        color:orangered;
+      }
+
+      .textRight{
+        text-align: right;
+        font-size:12px;
+      }
+
+      .line{
+        overflow:hidden;
+        zoom:1;
+        padding-top:10px;
+        .colDark{
+          display: inline-block;
+          width:60px;
+          text-align:right;
+        }
+        input{
+          width:170px;
+          height:26px;
+          line-height:26px;
+          border:solid 1px #ccc;
+          display: inline-block;
+          padding:0px 5px;
+        }
+
+        button{
+          background:#f39a10;
+          color:#fff;
+          border:0px;
+          width:170px;
+          height:26px;
+          line-height:26px;
+          border:0;
+          display: inline-block;
+          padding:0px 5px;
+        }
+      }
+    }
+
+  }
+}
