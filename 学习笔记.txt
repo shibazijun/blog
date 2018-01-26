@@ -70,3 +70,6 @@ API模块
 /login  用户登录
 /comment 评论获取
 /comment/post 评论提交
+
+
+mongod  --dbpath D:\学习笔记\nodejs\www\db  --port 27018
