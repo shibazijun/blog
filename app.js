@@ -9,6 +9,9 @@ var  cookies = require('cookies'); //存储用户登录信息
 
 var app=express();              // 创建app应用=> Nodejs HeateServer()
 
+var User = require('./models/User');
+
+
 //静态文件处理， 设置静态文件托管目录
 //当用户访问的URL以public开始的，则返回对应的__dirname + public 下的文件
 app.use('/public',express.static(__dirname + '/public'));
@@ -34,12 +37,22 @@ app.use(function (req,res,next) {
     req.userInfo={}  //解析登录用户的COOKie信息
     if(req.cookies.get("userInfo")){
         try{
-            req.userInfo=JSON.parse(req.cookies.get("userInfo"))
-        }catch(e){}
+            req.userInfo=JSON.parse(req.cookies.get("userInfo"));
+
+            //获取当前用户是否是管理员
+            User.findById(req.userInfo._id).then(function (userInfo) {
+                req.userInfo.isAdmin=Boolean(userInfo.isAdmin);
+                next()
+            })
+        }catch(e){
+            next()
+        }
+    }else{
+        next()
     }
 
     //console.log(typeof req.cookies.get("userInfo"))
-    next()
+
 })
 
 
@@ -75,7 +88,7 @@ mongoose.connect('mongodb://localhost:27018/blog',function(err){
     if(err){
         console.log('数据库连接失败')
     }else{
-        console.log('success')
+        console.log('数据库连接')
         app.listen(8088); // 监听http请求
     }
 });

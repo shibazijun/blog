@@ -1,10 +1,14 @@
-//ÒıÈëmongoose Ä£¿é
+ï»¿//å¼•å…¥mongoose æ¨¡å—
 var  mongoose = require('mongoose');
 
 
-//ÓÃ»§±í½á¹¹
+//ç”¨æˆ·è¡¨ç»“æ„
 module.exports = new mongoose.Schema({
     username:  String,
-    password: String
+    password: String,
+    isAdmin:{
+        type:Boolean,
+        default:false
+    }
 });
 

@@ -66,11 +66,18 @@
         <div class="rightBox" id="userInfo">
             <div class="title"><span>用户信息</span></div>
             <p><span class="colDark username">{{userInfo.username}}</span></p>
+
+            {% if userInfo.isAdmin %}
+            <p><span class="colDark info">你好，管理员</span>
+                <a href="/admin">进入管理后台</a>
+            </p>
+            {% else %}
             <p><span class="colDark info">你好，欢迎访问我的博客</span></p>
+            {% endif %}
             <p><span class="colDark"><a href="/javascript:;" id="logoutBtn">退出</a></span></p>
         </div>
         {% else %}
-        <div class="rightBox" id="loginBox" style="display: none;">
+        <div class="rightBox" id="loginBox" >
             <div class="title"><span>登录</span></div>
             <div class="line"><span class="colDark">用户名</span>：<input type="text" name="username"><em></em></div>
             <div class="line"><span class="colDark">密码</span>：<input type="password" name="password"><em></em></div>
@@ -79,7 +86,7 @@
             <p class="colWarning textCenter"></p>
         </div>
 
-        <div class="rightBox" id="registerBox" >
+        <div class="rightBox" id="registerBox" style="display: none;">
             <div class="title"><span>注册</span></div>
             <div class="line"><span class="colDark">用户名</span>：<input type="text" name="username"><em></em></div>
             <div class="line"><span class="colDark">密码</span>：<input type="password" name="password"><em></em></div>
