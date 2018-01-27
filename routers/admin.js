@@ -89,7 +89,10 @@ router.get('/category',function(req,res,next){
         page = Math.max(page,1)       //取值不能小于1
 
         var skip  = ( page - 1 ) * limit  //当前在第几页位置
-        Category.find().limit(limit).skip(skip).then(function (categories) {
+
+        // sort: 1为升序，-1为降序
+
+        Category.find().sort({_id:-1}).limit(limit).skip(skip).then(function (categories) {
             //console.log(users)
             res.render('admin/category_index',{
                 userInfo:req.userInfo,
@@ -231,17 +234,45 @@ router.post('/category/edit',function (req,res) {
 })
 
 // 删除分类
-router.get('/category/delete',function (req,res,next) {
+router.get('/删除/delete',function (req,res,next) {
     var id = req.query.id || "";
     Category.remove({
         _id:id
     }).then(function () {
         res.render('admin/success',{
             userInfo:req.userInfo,
-            message:"删除成功",
+            message:"成功",
             url:'/admin/category'
         });
     })
+
+})
+
+
+// 内容首页
+router.get('/content',function (req,res,next) {
+    res.render('admin/content_index',{
+        userInfo:req.userInfo,
+
+    });
+})
+
+
+
+// 内容首页
+router.get('/content/add',function (req,res,next) {
+
+    Category.find().sort({_id:-1}).then(function (Categories) {
+        res.render('admin/content_add',{
+            userInfo:req.userInfo,
+            categories:Categories
+        });
+    })
+})
+
+// 内容保存
+router.post('/content/add',function (req,res,next) {
+    console.log(req.body)
 
 })
 
