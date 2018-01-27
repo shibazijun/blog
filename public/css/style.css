@@ -1,0 +1,172 @@
+body {
+  padding: 0;
+  margin: 0;
+  font: 14px/2 "微软雅黑";
+  background-color: #efefef;
+}
+h1,
+h2,
+h3,
+h4,
+ul {
+  padding: 0;
+  margin: 0;
+  font: 14px/2 "微软雅黑";
+}
+ul {
+  list-style: none;
+}
+header .backimg {
+  height: 200px;
+  position: relative;
+}
+header .backimg img {
+  width: 100%;
+  height: 200px;
+}
+header .log {
+  height: 45px;
+  display: block;
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  text-align: center;
+}
+header .log img {
+  width: 220px;
+  height: 45px;
+  margin: auto;
+}
+nav {
+  background-color: #fff;
+  border-bottom: solid 2px #ccc;
+  height: 40px;
+}
+nav .menu {
+  width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+nav .menu a {
+  padding: 0px 20px;
+  margin: 0px 10px;
+  line-height: 40px;
+  display: inline-block;
+  text-decoration: none;
+}
+nav .menu a.active {
+  border-bottom: solid 2px darkgoldenrod;
+}
+main {
+  width: 1200px;
+  margin: auto;
+  padding: 20px 0px;
+}
+main .mainLeft {
+  width: 880px;
+  float: left;
+}
+main .mainLeft .listBox {
+  background: #fff;
+  margin-bottom: 20px;
+  padding: 20px;
+  line-height: 2;
+}
+main .mainLeft .listBox h1 {
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+main .mainLeft .listBox .colDefault {
+  text-align: center;
+}
+main .mainLeft .listBox .colDefault .colInfo {
+  color: #9b8efd;
+}
+main .mainLeft .listBox dfn {
+  padding: 10px 0px;
+  font-style: normal;
+  font-size: 16px;
+}
+main .mainLeft .listBox .function a {
+  padding: 8px 20px;
+  background: #f39a10;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+main .mainLeft .listBox .function a:hover {
+  background: #F3642D;
+}
+main .mainLeft .listBox .clear li {
+  display: inline-block;
+  width: 33%;
+  text-align: center;
+}
+main .mainLeft .listBox .clear li.previous {
+  text-align: left;
+}
+main .mainLeft .listBox .clear li.next {
+  text-align: right;
+}
+main .mainLeft .listBox .clear li a {
+  color: #9b8efd;
+}
+main .mainRight {
+  width: 300px;
+  float: right;
+}
+main .mainRight .rightBox {
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+main .mainRight .rightBox .title {
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: solid 2px #efefef;
+  height: 40px;
+}
+main .mainRight .rightBox .title span {
+  line-height: 40px;
+  height: 40px;
+  display: inline-block;
+  border-bottom: solid 2px #960;
+}
+main .mainRight .rightBox .colWarning {
+  text-align: center;
+  color: orangered;
+}
+main .mainRight .rightBox .textRight {
+  text-align: right;
+  font-size: 12px;
+}
+main .mainRight .rightBox .line {
+  overflow: hidden;
+  zoom: 1;
+  padding-top: 10px;
+}
+main .mainRight .rightBox .line .colDark {
+  display: inline-block;
+  width: 60px;
+  text-align: right;
+}
+main .mainRight .rightBox .line input {
+  width: 170px;
+  height: 26px;
+  line-height: 26px;
+  border: solid 1px #ccc;
+  display: inline-block;
+  padding: 0px 5px;
+}
+main .mainRight .rightBox .line button {
+  background: #f39a10;
+  color: #fff;
+  border: 0px;
+  width: 170px;
+  height: 26px;
+  line-height: 26px;
+  border: 0;
+  display: inline-block;
+  padding: 0px 5px;
+}

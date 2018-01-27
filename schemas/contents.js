@@ -6,8 +6,8 @@ var  mongoose = require('mongoose');
 module.exports = new mongoose.Schema({
     category:{ //关联字段
         type:mongoose.Schema.Types.ObjectId,  //字段类型
-        ref: 'Content' //引用
-    }
+        ref: 'category' //引用
+    },
     title: String,
     description:{
         type:String,
