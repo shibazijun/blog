@@ -3,6 +3,7 @@ var express= require('express');// 加载express模块
 
 var router= express.Router();
 var User= require("../models/User") //引入user模型
+var Content= require("../models/Content") //引入Content模型
 
 
 /*//监听访问请求
@@ -124,6 +125,44 @@ router.get('/user/logout',function(req,res) {
     responseData.message = '退出成功';
     res.json(responseData);
 })
+
+router.get('/comment',function (req,res) {
+    var contentId=req.query.contentid || '';
+
+    Content.findOne({
+        _id:contentId
+    }).then(function (content) {
+        console.log(content)
+        responseData.data=content.comments;
+        res.json(responseData);
+    })
+})
+
+// 评论提交
+router.post('/comment/post',function (req,res) {
+    var contentId=req.body.contentid || '';
+    var postData = {
+        username:req.userInfo.username,
+        postTime:new Date(),
+        content:req.body.content
+    }
+
+    console.log(contentId)
+    console.log(postData)
+
+    Content.findOne({
+        _id:contentId
+    }).then(function (content) {
+        content.comments.push(postData)
+        return content.save()
+    }).then(function (newConetnt) {
+        responseData.message="评论成功"
+        responseData.data=newConetnt;
+        res.json(responseData);
+    })
+
+})
+
 
 
 

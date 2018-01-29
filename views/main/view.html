@@ -4,7 +4,7 @@
 
 
 
-{% for content in contents %}
+
 <div class="listBox">
     <h1>{{ content.title }}</h1>
     <p class="colDefault">
@@ -13,10 +13,38 @@
         阅读：<span class="colInfo">{{ content.views }}</span>
         评论：<span class="colInfo">{{ content.title }}</span>
     </p>
-    <dfn><p>{{ content.description }}</p></dfn>
-    <div class="function"><a href="/view?contentid={{content._id.toString()}}">阅读全文</a></div>
+    <dfn><p>{{ content.content }}</p></dfn>
 </div>
-{% endfor %}
+
+<div class="listBox message">
+    <h3 class="textLeft"><strong>评论</strong> <span class="em">一共有 <em id="messageCount">0</em> 条评论</span></h3>
+    {% if userInfo._id %}
+    <p class="textLeft">{{userInfo.username}}</p>
+    <p class="textLeft clear">
+        <textarea name="" id="messageContent"></textarea>
+        <input type="hidden" id="contentId" value="{{ content.id}}">
+        <button id="submit">提交</button>
+    </p>
+    {% else %}
+     <p class="dbDanger">还没有登录，请先登录</p>
+    {% endif %}
+    <div class="messageList">
+        <!--<div class="messageBox">
+            <p>还没有留言</p>
+        </div>-->
+
+        <!--<div class="messageBox">
+            <p><span>admin</span> <span>222</span></p>
+            <p>{{}}</p>
+        </div>-->
+
+    </div>
+
+</div>
+
+
+
+<!--
 <div class="listBox">
     <ul class="clear">
         <li class="previous">
@@ -35,6 +63,6 @@
             {% endif %}
         </li>
     </ul>
-</div>
+</div>-->
 
 {% endblock %}

@@ -181,3 +181,47 @@ main{
 
   }
 }
+
+
+
+.message{
+  h3.textLeft{
+    font-size:16px;
+    .em{float:right;
+
+      font-size:14px;
+      em{font-style: normal;color:red;}
+    }
+  }
+
+  .textLeft{
+    &.clear{
+      overflow:hidden;
+      zoom:1;
+    }
+    #messageContent{
+      width:748px;
+      height:80px;
+      border:solid 1px #2b669a;
+      resize:none;
+      float:left;
+    }
+    #submit{
+      float:left;
+      height:86px;
+      line-height:86px;
+      width:86px;
+      background:#2b669a;
+      border:solid 1px #2b669a;
+      color:#fff;
+      font-size:16px;
+    }
+  }
+
+  .dbDanger{
+    color:#fff;
+    background:#960;
+    line-height:2;
+    text-align:center;
+  }
+}

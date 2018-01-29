@@ -170,3 +170,41 @@ main .mainRight .rightBox .line button {
   display: inline-block;
   padding: 0px 5px;
 }
+.message h3.textLeft {
+  font-size: 16px;
+}
+.message h3.textLeft .em {
+  float: right;
+  font-size: 14px;
+}
+.message h3.textLeft .em em {
+  font-style: normal;
+  color: red;
+}
+.message .textLeft.clear {
+  overflow: hidden;
+  zoom: 1;
+}
+.message .textLeft #messageContent {
+  width: 748px;
+  height: 80px;
+  border: solid 1px #2b669a;
+  resize: none;
+  float: left;
+}
+.message .textLeft #submit {
+  float: left;
+  height: 86px;
+  line-height: 86px;
+  width: 86px;
+  background: #2b669a;
+  border: solid 1px #2b669a;
+  color: #fff;
+  font-size: 16px;
+}
+.message .dbDanger {
+  color: #fff;
+  background: #960;
+  line-height: 2;
+  text-align: center;
+}

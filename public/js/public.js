@@ -74,4 +74,51 @@ $(function () {
         })
     })
 
+    $("#submit").on("click",function () {
+        $.ajax({
+            url:'/api/comment/post',
+            data:{
+                contentid:$("#contentId").val(),
+                content:$("#messageContent").val()
+            },
+            type:"POST",
+            success:function (responseData) {
+                renderComment(responseData.data.comments.reverse())
+            }
+        })
+    })
+
+
+
+    // 每次重载是获取说有评论
+    $.ajax({
+        url:'/api/comment',
+        data:{
+            contentid:$("#contentId").val(),
+        },
+        success:function (responseData) {
+            renderComment(responseData.data.reverse())
+        }
+
+    })
+
+
+
 })
+
+function  renderComment(comments){
+    $("#messageCount").html(comments.length)
+    var html='';
+    for(var i=0 ;i<comments.length;i++){
+        html+='<div class="messageBox">\n' +
+            '<p><span>'+ comments[i].username +'</span> <span>'+ formatData(comments[i].postTime) +'</span></p>\n' +
+            '<p>'+ comments[i].content +'</p>'
+    }
+
+    $(".messageList").html(html)
+}
+
+function formatData(d) {
+    var dt=new Date(d)
+    return dt.getFullYear()+'-'+ (dt.getMonth()+1)+'-'+ dt.getDate() +" " + dt.getHours() + ":"+ dt.getMinutes() +":"+ dt.getSeconds()
+}

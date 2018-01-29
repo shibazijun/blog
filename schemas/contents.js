@@ -9,6 +9,23 @@ module.exports = new mongoose.Schema({
         ref: 'category' //引用
     },
     title: String,
+
+    user:{ //关联字段
+        type:mongoose.Schema.Types.ObjectId,  //字段类型
+        ref: 'User' //引用
+    },
+
+    addTime:{
+        type:Date,
+        default:new Date()
+    },
+
+    views:{
+        type:Number,
+        default:0
+    },
+
+
     description:{
         type:String,
         default:''
@@ -17,6 +34,11 @@ module.exports = new mongoose.Schema({
     content:{
         type:String,
         default:''
+    },
+
+    comments:{
+        type:Array,
+        default:[]
     }
 });
 

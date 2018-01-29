@@ -266,13 +266,13 @@ router.get('/content',function (req,res,next) {
         pages= Math.ceil(count / limit)  //计算总页数
         page = Math.min(page,pages)      //取值不能大于总页数
         page = Math.max(page,1)       //取值不能小于1
-
         var skip  = ( page - 1 ) * limit  //当前在第几页位置
 
         // sort: 1为升序，-1为降序
 
-        Content.find().sort({_id:-1}).limit(limit).skip(skip).populate("category").then(function (Contents) {
-            //console.log(Contents)
+        //Content.find().sort({_id:-1}).limit(limit).skip(skip).populate("category").then(function (Contents) {
+        Content.find().sort({_id:-1}).limit(limit).skip(skip).populate(["category",'user']).sort({addTime:-1}).then(function (Contents) {
+            console.log(Contents)
             res.render('admin/content_index',{
                 userInfo:req.userInfo,
                 contents:Contents,
@@ -320,6 +320,7 @@ router.post('/content/add',function (req,res,next) {
     new Content({
         category:req.body.category,
         title:req.body.title,
+        user:req.userInfo._id.toString(),
         description:req.body.description,
         content:req.body.content
     }).save().then(function (rs) {
