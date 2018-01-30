@@ -11,7 +11,7 @@
         作者：<span class="colInfo">{{ content.user.username }}</span>
         时间：<span class="colInfo">{{content.addTime | date('Y-m-d H:i:s',-60 * 8)}}</span>
         阅读：<span class="colInfo">{{ content.views }}</span>
-        评论：<span class="colInfo">{{ content.title }}</span>
+        评论：<span class="colInfo">{{ content.comments.length }}</span>
     </p>
     <dfn><p>{{ content.content }}</p></dfn>
 </div>
@@ -29,16 +29,16 @@
      <p class="dbDanger">还没有登录，请先登录</p>
     {% endif %}
     <div class="messageList">
-        <!--<div class="messageBox">
-            <p>还没有留言</p>
-        </div>-->
-
-        <!--<div class="messageBox">
-            <p><span>admin</span> <span>222</span></p>
-            <p>{{}}</p>
-        </div>-->
 
     </div>
+
+    <nav class="pager">
+        <ul class="pager">
+            <li class="previous"> 上一页</li>
+            <li></li>
+            <li class="next">下一页</li>
+        </ul>
+    </nav>
 
 </div>
 

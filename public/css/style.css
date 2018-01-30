@@ -208,3 +208,20 @@ main .mainRight .rightBox .line button {
   line-height: 2;
   text-align: center;
 }
+nav.pager {
+  border-top: 1px solid #ccc;
+  border-bottom: 0px;
+}
+.pager li {
+  display: inline-block;
+  text-align: center;
+  width: 60%;
+}
+.pager li.previous {
+  text-align: left;
+  width: 20%;
+}
+.pager li.next {
+  text-align: right;
+  width: 19%;
+}
